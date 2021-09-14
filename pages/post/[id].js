@@ -5,7 +5,7 @@ import Link from "next/link";
 import { databaseId } from "../index.js";
 import styles from "../post.module.css";
 
-export const Text = ({ text }) => {
+export const PageText = ({ text }) => {
   if (!text) {
     return null;
   }
@@ -39,32 +39,32 @@ const renderBlock = (block) => {
     case "paragraph":
       return (
         <p>
-          <Text text={value.text} />
+          <PageText text={value.text} />
         </p>
       );
     case "heading_1":
       return (
         <h1>
-          <Text text={value.text} />
+          <PageText text={value.text} />
         </h1>
       );
     case "heading_2":
       return (
         <h2>
-          <Text text={value.text} />
+          <PageText text={value.text} />
         </h2>
       );
     case "heading_3":
       return (
         <h3>
-          <Text text={value.text} />
+          <PageText text={value.text} />
         </h3>
       );
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
         <li>
-          <Text text={value.text} />
+          <PageText text={value.text} />
         </li>
       );
     case "to_do":
@@ -72,7 +72,7 @@ const renderBlock = (block) => {
         <div>
           <label htmlFor={id}>
             <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-            <Text text={value.text} />
+            <PageText text={value.text} />
           </label>
         </div>
       );
@@ -80,7 +80,7 @@ const renderBlock = (block) => {
       return (
         <details>
           <summary>
-            <Text text={value.text} />
+            <PageText text={value.text} />
           </summary>
           {value.children?.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -119,7 +119,7 @@ export default function Post({ page, blocks }) {
 
       <article className={styles.container}>
         <h1 className={styles.name}>
-          <Text text={page.properties.Name.title} />
+          <PageText text={page.properties.Name.title} />
         </h1>
         <section>
           {blocks.map((block) => (
